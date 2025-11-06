@@ -24,7 +24,7 @@ Every car and its respective driver has a record on a blockchain via **Decentral
 #### Key Features:
 - **Vehicle Registration:** Register vehicle DIDs and IPFS metadata hashes.
 - **Access Management:** Provide and withdraw access rights to eligible drivers.
-- **Verification:** Publicly verify that a driver has legal access to a car.
+- **Verification:** Publicly verify whether a driver has legal access to a car.
 - **Event Logging:** Emits events that are immutable (`VehicleRegistered`, `AccessGranted`, `AccessRevoked`) for transparency.
 
 
@@ -48,10 +48,10 @@ npx hardhat compile
 # 2. Start a local Ethereum node
 npx hardhat node
 
-# 3. Deploy your contract locally
+# 3. Deploy contract on localhost
 npx hardhat run scripts/deploy.js --network localhost
 
-# 4. Open contract console locally
+# 4. Open contract console on localhost
 npx hardhat console --network localhost
 
 # 5. Deploy contract on pubic network using Sepolia Ethers
