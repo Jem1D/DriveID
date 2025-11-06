@@ -38,3 +38,23 @@ Each vehicle and driver is registered on-chain with **Decentralized Identifiers 
 ### **Installation**
 ```bash
 npm install
+```
+
+### **Contract setup steps**
+```bash
+# 1. Compile the contract
+npx hardhat compile
+
+# 2. Start a local Ethereum node
+npx hardhat node
+
+# 3. Deploy your contract locally
+npx hardhat run scripts/deploy.js --network localhost
+
+# 4. Open contract console locally
+npx hardhat console --network localhost
+
+# 5. Deploy contract on pubic network using Sepolia Ethers
+npx hardhat run scripts/deploy.js --network sepolia
+
+```
