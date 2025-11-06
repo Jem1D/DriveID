@@ -1,33 +1,34 @@
-# DriveID
-# 🚗 DriveID — Decentralized Vehicle Identity and Access Management
-**CSE540 – Draft Smart Contract Design | Group 14**
+# DriveID: Decentralized Vehicle Identity and Access Management
+**CSE540 – Draft Smart Contract Design**
 
----
+_by **Group 14**_
 
-## 📜 Project Description
-DriveID is a decentralized smart contract system designed to manage **vehicle identity, ownership, and access control** using blockchain technology.  
-Traditional vehicle rental and ownership systems rely on centralized databases, which can lead to:
-- Security and data privacy risks  
-- Inefficient manual verification  
-- Limited transparency  
 
-DriveID eliminates these issues by using **Ethereum smart contracts** to store verifiable vehicle credentials and ownership details.  
-Each vehicle and driver is registered on-chain with **Decentralized Identifiers (DIDs)** and **Verifiable Credentials (VCs)**, allowing transparent and tamper-proof access management.
+## Project Overview
+DriveID is a decentralized platform based on a smart contract system that enables managing **car identity, ownership, and access** through blockchain technology.
 
----
+### Motivation
+Traditional car rental and ownership practices involve a centralized database, and this brings about problems such as:
+- Risks of Security and Data Protection  
+- Inefficient manual verification 
+- Limited Transparency  
+ 
+DriveID solves this problem by utilizing **Ethereum Smart Contracts** for storing verified car information and ownership proof on its platform.
+Every car and its respective driver has a record on a blockchain via **Decentralized Identifiers (DIDs)** and **Verifiable Credentials (VCs)**.
 
-## 🧱 Contract Overview
+
+## Contract Overview
 ### **Contract Name:** `DriveID.sol`
+(Ownable; emits transparent events; maintains  hashes / pointers of credentials on-chain; metadata on IPFS.)
 
 #### Key Features:
-- **Vehicle Registration:** Register vehicle DIDs and IPFS metadata hashes.  
-- **Access Management:** Grant and revoke access credentials to authorized drivers.  
-- **Verification:** Publicly verify whether a driver has valid access to a vehicle.  
-- **Event Logging:** Emits immutable events (`VehicleRegistered`, `AccessGranted`, `AccessRevoked`) for transparency.
+- **Vehicle Registration:** Register vehicle DIDs and IPFS metadata hashes.
+- **Access Management:** Provide and withdraw access rights to eligible drivers.
+- **Verification:** Publicly verify that a driver has legal access to a car.
+- **Event Logging:** Emits events that are immutable (`VehicleRegistered`, `AccessGranted`, `AccessRevoked`) for transparency.
 
----
 
-## ⚙️ Dependencies / Setup Instructions
+## Dependencies / Setup Instructions
 
 ### **Requirements**
 - Node.js ≥ 18  
@@ -35,11 +36,10 @@ Each vehicle and driver is registered on-chain with **Decentralized Identifiers 
 - OpenZeppelin Contracts 5.4.0  
 - dotenv 17.2.3  
 
-### **Installation**
+### **Installations**
 ```bash
 npm install
 ```
-
 ### **Contract setup steps**
 ```bash
 # 1. Compile the contract
@@ -58,3 +58,18 @@ npx hardhat console --network localhost
 npx hardhat run scripts/deploy.js --network sepolia
 
 ```
+
+## Team (Group 14)
+
+| Member | Role | Responsibilities |
+|-------|------|------------------|
+| **Jemil Dharia** | Backend & Blockchain | Smart contract design/implementation, Hardhat configuration, testnet deployments |
+| **Shubh Kapadia** | Frontend & Integration | React UI, Ethers.js/MetaMask wiring, IPFS metadata linking |
+| **Manav Patel** | Testing & Optimization | Unit and integration testing, gas profiling, edge-case validation |
+| **Saurin Prajapati** | Backend, Docs & QA | Smart contract implementation support; repo/docs; deploy scripts; System testing and basic UAT; issues & release notes |
+
+Team practices: weekly Google Meet at Fri 6 PM, mid-week Slack/GitHub async updates, daily syncs during final week. 
+
+> **Note:** All reports and presentations will be collectively prepared by all members of our team.**
+
+
