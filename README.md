@@ -65,7 +65,7 @@ npx hardhat run scripts/deploy.js --network sepolia
 |-------|------|------------------|
 | **Jemil Dharia** | Backend & Blockchain | Smart contract design/implementation, Hardhat configuration, testnet deployments |
 | **Shubh Kapadia** | Frontend & Integration | React UI, Ethers.js/MetaMask wiring, IPFS metadata linking |
-| **Manav Patel** | Testing & Optimization | Unit and integration testing, gas profiling, edge-case validation |
+| **Manav Patel** | Backend, Testing & Optimization | Wallet integration, Smart contract development, Unit and integration testing, gas profiling, edge-case validation |
 | **Saurin Prajapati** | Backend, Docs & QA | Smart contract implementation support; repo/docs; deploy scripts; System testing and basic UAT; issues & release notes |
 
 Team practices: weekly Google Meet at Fri 6 PM, mid-week Slack/GitHub async updates, daily syncs during final week. 
