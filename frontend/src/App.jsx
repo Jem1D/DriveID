@@ -9,10 +9,20 @@ import {
 
 function App() {
   const [wallet, setWallet] = useState("");
+
+  // Register
   const [vehicleDID, setVehicleDID] = useState("");
   const [ipfsHash, setIpfsHash] = useState("");
+
+  // Grant
+  const [grantDID, setGrantDID] = useState("");
   const [driver, setDriver] = useState("");
   const [credHash, setCredHash] = useState("");
+
+  // Revoke
+  const [revokeDID, setRevokeDID] = useState("");
+
+  // Verify
   const [verifyDid, setVerifyDid] = useState("");
   const [verifyDriver, setVerifyDriver] = useState("");
 
@@ -31,12 +41,14 @@ function App() {
   };
 
   const handleGrant = async () => {
-    await grantAccess(vehicleDID, driver, credHash);
+    if (!grantDID) return alert("Please enter Vehicle DID");
+    await grantAccess(grantDID, driver, credHash);
     alert("Access granted!");
   };
 
   const handleRevoke = async () => {
-    await revokeAccess(vehicleDID);
+    if (!revokeDID) return alert("Please enter Vehicle DID to revoke");
+    await revokeAccess(revokeDID);
     alert("Access revoked!");
   };
 
@@ -45,7 +57,6 @@ function App() {
     alert(result ? "Access Verified!" : "Access Denied");
   };
 
-  // ---------- UI ----------
   return (
     <div
       style={{
@@ -56,7 +67,9 @@ function App() {
         fontFamily: "Inter, sans-serif",
       }}
     >
-      <h1 style={{ fontSize: "32px", marginBottom: "10px" }}>🚗 DriveID Dashboard</h1>
+      <h1 style={{ fontSize: "32px", marginBottom: "10px" }}>
+        🚗 DriveID Dashboard
+      </h1>
 
       {/* Connect Wallet */}
       <div style={{ marginBottom: "30px" }}>
@@ -74,25 +87,30 @@ function App() {
         >
           Connect MetaMask
         </button>
-        <div style={{ opacity: 0.8 }}>Wallet: {wallet || "Not connected"}</div>
+        <div style={{ opacity: 0.8 }}>
+          Wallet: {wallet || "Not connected"}
+        </div>
       </div>
 
       <hr style={{ borderColor: "#333" }} />
 
-      {/* Section Wrapper */}
+      {/* Container */}
       <div style={{ maxWidth: "500px", marginTop: "30px" }}>
         {/* Register Vehicle */}
         <h2 style={{ marginBottom: "10px" }}>Register Vehicle</h2>
+
         <input
           placeholder="Vehicle DID"
           onChange={(e) => setVehicleDID(e.target.value)}
           style={inputStyle}
         />
+
         <input
           placeholder="IPFS Hash"
           onChange={(e) => setIpfsHash(e.target.value)}
           style={inputStyle}
         />
+
         <button style={btnStyle} onClick={handleRegister}>
           Register
         </button>
@@ -101,16 +119,25 @@ function App() {
 
         {/* Grant Access */}
         <h2 style={{ marginBottom: "10px" }}>Grant Access</h2>
+
+        <input
+          placeholder="Vehicle DID"
+          onChange={(e) => setGrantDID(e.target.value)}
+          style={inputStyle}
+        />
+
         <input
           placeholder="Driver address"
           onChange={(e) => setDriver(e.target.value)}
           style={inputStyle}
         />
+
         <input
           placeholder="Credential Hash"
           onChange={(e) => setCredHash(e.target.value)}
           style={inputStyle}
         />
+
         <button style={btnStyle} onClick={handleGrant}>
           Grant Access
         </button>
@@ -119,11 +146,13 @@ function App() {
 
         {/* Revoke Access */}
         <h2 style={{ marginBottom: "10px" }}>Revoke Access</h2>
+
         <input
           placeholder="Vehicle DID"
-          onChange={(e) => setVehicleDID(e.target.value)}
+          onChange={(e) => setRevokeDID(e.target.value)}
           style={inputStyle}
         />
+
         <button
           style={{
             ...btnStyle,
@@ -131,23 +160,26 @@ function App() {
           }}
           onClick={handleRevoke}
         >
-          Revoke
+          Revoke Access
         </button>
 
         <hr style={{ borderColor: "#333", margin: "25px 0" }} />
 
         {/* Verify */}
         <h2 style={{ marginBottom: "10px" }}>Verify Access</h2>
+
         <input
           placeholder="Vehicle DID"
           onChange={(e) => setVerifyDid(e.target.value)}
           style={inputStyle}
         />
+
         <input
           placeholder="Driver Address"
           onChange={(e) => setVerifyDriver(e.target.value)}
           style={inputStyle}
         />
+
         <button style={btnStyle} onClick={handleVerify}>
           Verify
         </button>
@@ -156,7 +188,7 @@ function App() {
   );
 }
 
-/* ----------- Inline Styles ---------- */
+/* ----------- Styles ---------- */
 const inputStyle = {
   width: "100%",
   padding: "10px",
