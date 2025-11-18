@@ -1,35 +1,40 @@
-node_modules
+# ---------------------------
+# GLOBAL
+# ---------------------------
+node_modules/
+.DS_Store
 .env
+*.local
+*.log
 
-# Hardhat files
-/cache
-/artifacts
+# Editor settings
+.vscode/*
+!.vscode/extensions.json
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
 
-# TypeChain files
-/typechain
-/typechain-types
+# ---------------------------
+# FRONTEND (Vite + React)
+# ---------------------------
+frontend/node_modules/
+frontend/dist/
+frontend/dist-ssr/
 
-# solidity-coverage files
-/coverage
-/coverage.json
+# ---------------------------
+# CONTRACT BACKEND (Hardhat)
+# ---------------------------
+contract-backend/node_modules/
+contract-backend/cache/
+contract-backend/artifacts/
+contract-backend/typechain/
+contract-backend/typechain-types/
+contract-backend/coverage/
+contract-backend/coverage.json
 
-# Hardhat Ignition default folder for deployments against a local node
-ignition/deployments/chain-31337
+# Hardhat Ignition deployments
+contract-backend/ignition/deployments/chain-31337/
 
-node_modules
-.env
-
-# Hardhat files
-/cache
-/artifacts
-
-# TypeChain files
-/typechain
-/typechain-types
-
-# solidity-coverage files
-/coverage
-/coverage.json
-
-# Hardhat Ignition default folder for deployments against a local node
-ignition/deployments/chain-31337
