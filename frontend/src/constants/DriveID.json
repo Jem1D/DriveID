@@ -4,6 +4,12 @@
       "anonymous": false,
       "inputs": [
         {
+          "indexed": false,
+          "internalType": "string",
+          "name": "vehicleDID",
+          "type": "string"
+        },
+        {
           "indexed": true,
           "internalType": "address",
           "name": "owner",
@@ -17,12 +23,68 @@
         },
         {
           "indexed": false,
+          "internalType": "uint256",
+          "name": "expiresAt",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
           "internalType": "string",
-          "name": "vehicleDID",
+          "name": "credentialHash",
           "type": "string"
         }
       ],
       "name": "AccessGranted",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "string",
+          "name": "vehicleDID",
+          "type": "string"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "owner",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "driver",
+          "type": "address"
+        }
+      ],
+      "name": "AccessRevoked",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "string",
+          "name": "vehicleDID",
+          "type": "string"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "oldOwner",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "newOwner",
+          "type": "address"
+        }
+      ],
+      "name": "OwnershipTransferred",
       "type": "event"
     },
     {
@@ -35,19 +97,19 @@
           "type": "address"
         },
         {
-          "indexed": true,
-          "internalType": "address",
-          "name": "driver",
-          "type": "address"
-        },
-        {
           "indexed": false,
           "internalType": "string",
           "name": "vehicleDID",
           "type": "string"
+        },
+        {
+          "indexed": false,
+          "internalType": "string",
+          "name": "newIpfsHash",
+          "type": "string"
         }
       ],
-      "name": "AccessRevoked",
+      "name": "VehicleMetadataUpdated",
       "type": "event"
     },
     {
@@ -73,12 +135,106 @@
       "inputs": [
         {
           "internalType": "string",
+          "name": "vehicleDID",
+          "type": "string"
+        },
+        {
+          "internalType": "address",
+          "name": "driver",
+          "type": "address"
+        }
+      ],
+      "name": "getCredential",
+      "outputs": [
+        {
+          "components": [
+            {
+              "internalType": "address",
+              "name": "issuer",
+              "type": "address"
+            },
+            {
+              "internalType": "address",
+              "name": "driver",
+              "type": "address"
+            },
+            {
+              "internalType": "string",
+              "name": "credentialHash",
+              "type": "string"
+            },
+            {
+              "internalType": "uint256",
+              "name": "issuedAt",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "expiresAt",
+              "type": "uint256"
+            },
+            {
+              "internalType": "bool",
+              "name": "revoked",
+              "type": "bool"
+            }
+          ],
+          "internalType": "struct DriveID.Credential",
           "name": "",
+          "type": "tuple"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "vehicleDID",
           "type": "string"
         }
       ],
-      "name": "credentials",
+      "name": "getVehicle",
       "outputs": [
+        {
+          "components": [
+            {
+              "internalType": "address",
+              "name": "owner",
+              "type": "address"
+            },
+            {
+              "internalType": "string",
+              "name": "vehicleDID",
+              "type": "string"
+            },
+            {
+              "internalType": "string",
+              "name": "ipfsHash",
+              "type": "string"
+            },
+            {
+              "internalType": "bool",
+              "name": "exists",
+              "type": "bool"
+            }
+          ],
+          "internalType": "struct DriveID.Vehicle",
+          "name": "",
+          "type": "tuple"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "vehicleDID",
+          "type": "string"
+        },
         {
           "internalType": "address",
           "name": "driver",
@@ -90,30 +246,9 @@
           "type": "string"
         },
         {
-          "internalType": "bool",
-          "name": "valid",
-          "type": "bool"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "string",
-          "name": "_vehicleDID",
-          "type": "string"
-        },
-        {
-          "internalType": "address",
-          "name": "_driver",
-          "type": "address"
-        },
-        {
-          "internalType": "string",
-          "name": "_credHash",
-          "type": "string"
+          "internalType": "uint256",
+          "name": "expiresAt",
+          "type": "uint256"
         }
       ],
       "name": "grantAccess",
@@ -125,12 +260,12 @@
       "inputs": [
         {
           "internalType": "string",
-          "name": "_vehicleDID",
+          "name": "vehicleDID",
           "type": "string"
         },
         {
           "internalType": "string",
-          "name": "_ipfsHash",
+          "name": "ipfsHash",
           "type": "string"
         }
       ],
@@ -143,8 +278,13 @@
       "inputs": [
         {
           "internalType": "string",
-          "name": "_vehicleDID",
+          "name": "vehicleDID",
           "type": "string"
+        },
+        {
+          "internalType": "address",
+          "name": "driver",
+          "type": "address"
         }
       ],
       "name": "revokeAccess",
@@ -156,17 +296,22 @@
       "inputs": [
         {
           "internalType": "string",
-          "name": "",
+          "name": "vehicleDID",
           "type": "string"
-        }
-      ],
-      "name": "vehicles",
-      "outputs": [
+        },
         {
           "internalType": "address",
-          "name": "owner",
+          "name": "newOwner",
           "type": "address"
-        },
+        }
+      ],
+      "name": "transferOwnership",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
         {
           "internalType": "string",
           "name": "vehicleDID",
@@ -174,28 +319,25 @@
         },
         {
           "internalType": "string",
-          "name": "ipfsHash",
+          "name": "newIpfsHash",
           "type": "string"
-        },
-        {
-          "internalType": "bool",
-          "name": "exists",
-          "type": "bool"
         }
       ],
-      "stateMutability": "view",
+      "name": "updateVehicleMetadata",
+      "outputs": [],
+      "stateMutability": "nonpayable",
       "type": "function"
     },
     {
       "inputs": [
         {
           "internalType": "string",
-          "name": "_vehicleDID",
+          "name": "vehicleDID",
           "type": "string"
         },
         {
           "internalType": "address",
-          "name": "_driver",
+          "name": "driver",
           "type": "address"
         }
       ],
@@ -203,8 +345,18 @@
       "outputs": [
         {
           "internalType": "bool",
-          "name": "",
+          "name": "isValid",
           "type": "bool"
+        },
+        {
+          "internalType": "uint256",
+          "name": "expiresAt",
+          "type": "uint256"
+        },
+        {
+          "internalType": "string",
+          "name": "credentialHash",
+          "type": "string"
         }
       ],
       "stateMutability": "view",

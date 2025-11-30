@@ -6,6 +6,6 @@ export const LOCAL_CONTRACT_ADDRESS =
 
 // Sepolia deployed contract address
 export const SEPOLIA_CONTRACT_ADDRESS =
-  "0xB438F96e3A2649A82E56Cf2191Fa30da16928b3D";
+  "0x3b8d9bA9d6d431660992955fFDAc14674c189aa7";
 
 export const CONTRACT_ABI = abiJson.abi;
