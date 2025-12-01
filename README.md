@@ -71,5 +71,3 @@ npx hardhat run scripts/deploy.js --network sepolia
 Team practices: weekly Google Meet at Fri 6 PM, mid-week Slack/GitHub async updates, daily syncs during final week. 
 
 > **Note:** All reports and presentations will be collectively prepared by all members of our team.**
-
-
