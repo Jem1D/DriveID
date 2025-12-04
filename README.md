@@ -16,25 +16,55 @@ Traditional car rental and ownership practices involve a centralized database, a
 DriveID solves this problem by utilizing **Ethereum Smart Contracts** for storing verified car information and ownership proof on its platform.
 Every car and its respective driver has a record on a blockchain via **Decentralized Identifiers (DIDs)** and **Verifiable Credentials (VCs)**.
 
+DriveID provides a self-governing identification layer where:
+* **Owners** manage credentials without intermediaries[cite: 14, 15].
+* **Verifiers** can independently confirm access legality on-chain[cite: 16].
+* **Drivers** utilize Verifiable Credentials (VCs) linked to Decentralized Identifiers (DIDs)[cite: 10].
+
+  
+## Key Features
+
+* **Immutable Vehicle Registration:** Register vehicles with unique DIDs and link metadata via IPFS.
+* **Dynamic Access Control:** Grant access to specific drivers with precise expiration timestamps (calculated in seconds).
+* **Revocation:** Instantly revoke a driver's access privileges before the expiration time.
+* **Ownership Transfer:** Securely transfer vehicle administrative rights to a new wallet address.
+* **Metadata Management:** Update off-chain IPFS links for vehicle data without changing the DID.
+* **Public Verification:** Verifiers can instantly check if a driver has valid, unexpired, and unrevoked access.
+* **Owner Lookup:** Publicly resolve a Vehicle DID to its current Ethereum owner address.
+
 
 ## Contract Overview
 ### **Contract Name:** `DriveID.sol`
 (Ownable; emits transparent events; maintains  hashes / pointers of credentials on-chain; metadata on IPFS.)
 
-#### Key Features:
-- **Vehicle Registration:** Register vehicle DIDs and IPFS metadata hashes.
-- **Access Management:** Provide and withdraw access rights to eligible drivers.
-- **Verification:** Publicly verify whether a driver has legal access to a car.
-- **Event Logging:** Emits events that are immutable (`VehicleRegistered`, `AccessGranted`, `AccessRevoked`) for transparency.
+#### Core Functions:
+* `registerVehicle(vehicleDID, ipfsHash)`: Onboards a new vehicle.
+* `grantAccess(vehicleDID, driver, credentialHash, expiresAt)`: Issues a time-bound credential.
+* `revokeAccess(vehicleDID, driver)`: Invalidates a driver's specific credential.
+* `transferOwnership(vehicleDID, newOwner)`: Transfers administrative rights.
+* `verifyAccess(vehicleDID, driver)`: Returns `isValid`, `expiresAt`, and hash.
+* `getVehicle(vehicleDID)`: Returns vehicle details and owner address.
+
+### Events
+* `VehicleRegistered`
+* `VehicleMetadataUpdated`
+* `OwnershipTransferred`
+* `AccessGranted`
+* `AccessRevoked`
 
 
 ## Dependencies / Setup Instructions
 
 ### **Requirements**
 - Node.js ≥ 18  
-- Hardhat 2.27.0  
-- OpenZeppelin Contracts 5.4.0  
-- dotenv 17.2.3  
+- MetaMask Wallet Extension
+
+## Technology Stack
+* **Blockchain:** Ethereum (Local Hardhat Network / Sepolia)
+* **Smart Contracts:** Solidity `^0.8.20`, OpenZeppelin
+* **Frontend:** React.js, Ethers.js, CSS (Dark Mode Interface)
+* **Storage:** IPFS (for off-chain metadata)
+* **Testing:** Hardhat, Mocha/Chai
 
 ### **Installations**
 ```bash
@@ -58,6 +88,12 @@ npx hardhat console --network localhost
 npx hardhat run scripts/deploy.js --network sepolia
 
 ```
+### **Launch Frontend**
+```bash
+npm run dev
+```
+Open http://localhost:5173 to view the DriveID Dashboard.
+
 
 ## Team (Group 14)
 
