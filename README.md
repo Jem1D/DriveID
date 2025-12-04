@@ -31,6 +31,8 @@ DriveID provides a self-governing identification layer where:
 * **Metadata Management:** Update off-chain IPFS links for vehicle data without changing the DID.
 * **Public Verification:** Verifiers can instantly check if a driver has valid, unexpired, and unrevoked access.
 * **Owner Lookup:** Publicly resolve a Vehicle DID to its current Ethereum owner address.
+* **Efficient On-Chain Storage:** Vehicles and credentials are stored as simple structs and mappings keyed by hashed DIDs for **O(1) lookups** and low gas usage.
+* **Immutable Audit Trail:** Every important change (registration, access grants/revocations, transfers) emits events, creating a permanent audit log for verifiers and regulators.
 
 
 ## Contract Overview
