@@ -99,6 +99,33 @@ npm run dev
 Open http://localhost:5173 to view the DriveID Dashboard.
 
 
+## Results: DriveID Dashboard
+
+* **Single-Page Experience:**  
+  The dashboard groups registration, access control, and verification flows into a single page so owners and drivers don’t have to jump between multiple screens.
+
+* **Real-Time Feedback via MetaMask:**  
+  All write operations (register, grant, revoke, transfer) are signed with MetaMask. The UI surfaces:
+  * Pending transaction state,
+  * Success / failure messages,
+  * And a direct reflection of updated contract state after confirmation.
+
+* **Verifier Journey:**  
+  A verifier can enter a vehicle DID + driver address and get an immediate “valid / invalid” response derived directly from the smart contract’s `verifyAccess` logic.
+
+
+## Future Work
+
+* **Mainnet / L2 Deployment:**  
+  Migrate the prototype to a production-ready environment (e.g., Ethereum mainnet or L2) and benchmark gas usage under realistic workloads.
+
+* **IoT Integration:**  
+  Connect on-chain authorization directly to vehicle hardware (e.g., smart locks) so `grantAccess` / `revokeAccess` can physically unlock/lock the car.
+
+* **Mobile Wallet UX:**  
+  Build a dedicated mobile interface for drivers to store their VCs, request access, and present proofs at checkpoints/gates.
+
+
 ## Team (Group 14)
 
 | Member | Role | Responsibilities |
