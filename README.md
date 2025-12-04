@@ -41,11 +41,13 @@ DriveID provides a self-governing identification layer where:
 
 #### Core Functions:
 * `registerVehicle(vehicleDID, ipfsHash)`: Onboards a new vehicle.
-* `grantAccess(vehicleDID, driver, credentialHash, expiresAt)`: Issues a time-bound credential.
+* `updateVehicleMetadata(vehicleDID, newIpfsHash)`: Updates the IPFS metadata for an already-registered vehicle.
+* `grantAccess(vehicleDID, driver, credentialHash, expiresAt)`: Issues a time-bound credential for a driver.
 * `revokeAccess(vehicleDID, driver)`: Invalidates a driver's specific credential.
-* `transferOwnership(vehicleDID, newOwner)`: Transfers administrative rights.
-* `verifyAccess(vehicleDID, driver)`: Returns `isValid`, `expiresAt`, and hash.
-* `getVehicle(vehicleDID)`: Returns vehicle details and owner address.
+* `transferOwnership(vehicleDID, newOwner)`: Transfers administrative rights to another wallet.
+* `verifyAccess(vehicleDID, driver)`: Returns `isValid`, `expiresAt`, and `credentialHash` so any third party can check access on-chain.
+* `getVehicle(vehicleDID)`: Returns full vehicle details and owner address.
+* `getCredential(vehicleDID, driver)`: Returns the full `Credential` struct for a given driver and vehicle.
 
 ### Events
 * `VehicleRegistered`
